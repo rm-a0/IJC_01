@@ -1,7 +1,7 @@
 // error.h
-// Solution IJC-DU1, Task B, 12.3.2024
+// Solution IJC-DU1, Task B, 15.3.2024
 // Author: Michal Repčík, FIT
-// Compiled: gcc 12.3
+// Compiled: gcc 11.4.0
 
 #ifndef ERROR_H
 #define ERROR_H

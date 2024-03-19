@@ -1,16 +1,17 @@
 // no-comment.c
-// Solution IJC-DU1, Task B, 12.3.2024
+// Solution IJC-DU1, Task B, 16.3.2024
 // Author: Michal Repčík, FIT
-// Compiled: gcc 16.3
+// Compiled: gcc 11.4.0
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 #include "error.h"
 
 // Function that processes cmd line arguments and returns pointer to the file
 FILE* process_file(int argc, char* argv[]) {
-    FILE *fp;
+    FILE *fp = NULL;
     if (argc > 2) {
         error_exit("Only one argument suppported\n");
     }

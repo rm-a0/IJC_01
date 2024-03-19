@@ -1,7 +1,7 @@
 // error.c
-// Solution IJC-DU1, Task B, 12.3.2024
+// Solution IJC-DU1, Task B, 15.3.2024
 // Author: Michal Repčík, FIT
-// Compiled: gcc 12.3
+// Compiled: gcc 11.4.0
 
 #include <stdio.h>
 #include <stdlib.h>
