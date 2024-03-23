@@ -27,6 +27,19 @@ FILE* process_file(int argc, char* argv[]) {
     return fp;
 }
 
+// Function that checks if redirected stdout is the same as stdin
+void check_stdout(FILE *fp) {
+    struct stat input_file; 
+    struct stat output_file;
+    
+    fstat(fileno(fp), &input_file);
+    fstat(fileno(stdout), &output_file);
+
+    if (input_file.st_ino == output_file.st_ino) {
+        error_exit("Input file is the same as output file\n");
+    }
+}
+
 // Function that removes comments from the input file
 void remove_comments(FILE *fp) {
     int c;
@@ -94,6 +107,7 @@ int main(int argc, char* argv[]) {
     FILE *fp;
 
     fp = process_file(argc, argv);
+    check_stdout(fp);
     remove_comments(fp);
     
     fclose(fp);
