@@ -3,6 +3,7 @@
 // Author: Michal Repčík, FIT
 // Compiled: gcc 11.4.0
 
+#define _POSIX_C_SOURCE 200809L // Needed for using fileno
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -50,7 +51,7 @@ void remove_comments(FILE *fp) {
             case 0: // Initial state
                 if (c == '/') {
                     state = 1; // Possibly the start of a comment
-                } else if (c == '"') {
+                } else if (c == '"' || c == '\'') {
                     state = 4; // Inside a string literal
                     putchar(c);
                 } else {
@@ -83,7 +84,7 @@ void remove_comments(FILE *fp) {
             case 4: // Inside a string literal
                 if (c == '\\') {
                     state = 5; // Possibly an escape sequence
-                } else if (c == '"') {
+                } else if (c == '"' || c == '\'') {
                     state = 0; // End of the string literal
                 }
                 putchar(c);
@@ -96,6 +97,16 @@ void remove_comments(FILE *fp) {
                 if (c == '\n') {
                     putchar(c);
                     state = 0; // End of comment
+                } else if (c == '\\') {
+                    state = 7; // Possibly start of a comment on next line
+                }
+                break;
+            case 7:
+                if (c == '\n') {
+                    putchar(c);
+                    state = 6; // Start of single-line comment
+                } else {
+                    state = 6; // Continue removing single-line comment
                 }
                 break;
         }
