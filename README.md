@@ -8,5 +8,6 @@ eratosthenes.h and eratosthenes.c are files with seieve implementation that uses
 To compile everything you can use command make all from Makefiile.
 If you want to compile only some files use
 <pre>
-  make <name-of-file>
+  make [name-of-file]
 </pre>
+
