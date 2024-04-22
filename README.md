@@ -10,4 +10,11 @@ If you want to compile only some files use
 <pre>
   make [name-of-file]
 </pre>
+You can run the program using command make run, that runs the primes file with both inlined and non-inlined macros.
+To run no-comment you can use
+<pre>
+  ./no-comment [input-file] > [redirected-output-file]
+</pre>
+Note that redirected output must not be the input-file.
+When output is not redirected it prints the contents to the stdin.
 
